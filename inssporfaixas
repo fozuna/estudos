@@ -1,0 +1,99 @@
+void main() {
+   double salario = 4300;
+  //tetos de contribuições
+  double teto1 = 1100;
+  double teto2 = 2203.45;
+  double teto3 = 3305.22;
+  double teto4 = 6433.57;
+  
+  //Alíquotas de contribuições
+   double aliq1 = 7.5;
+   double aliq2 = 9;
+   double aliq3 = 12;
+   double aliq4 = 14;
+  
+  //faixas salariais
+  double priFaixa = 0;
+  double segFaixa = 0;
+  double terFaixa = 0;
+  double quaFaixa = 0;
+  
+  //encontrar primeira faixa
+  if(salario > 0 && salario <= teto1){
+    priFaixa = salario;
+  }else if(salario > teto1){
+    priFaixa = teto1;
+  }
+  
+  double inss1 = priFaixa * (aliq1 / 100);
+  String primFx = inss1.toStringAsFixed(2);
+  
+  //Encontrar segunda faixa
+  if(salario > teto1 && salario <= teto2){
+    segFaixa = salario - teto1;
+  }else if(salario > teto2){
+    segFaixa = teto2 - teto1;
+  }
+  
+  double inss2 = segFaixa * (aliq2 / 100);
+  String segFxa = segFaixa.toStringAsFixed(2);
+  String segFx = inss2.toStringAsFixed(2);
+  
+  //Encontrar terceira faixa
+  if(salario > teto2 && salario <= teto3){
+    terFaixa = salario - teto2;
+  }else if(salario > teto3){
+    terFaixa = teto3 - teto2;
+  }
+  
+  String terFxa = terFaixa.toStringAsFixed(2);
+  double inss3 = terFaixa * (aliq3 / 100);
+  String terFx = inss3.toStringAsFixed(2);
+  
+  //Encontrar quarta faixa
+  if(salario > teto3 && salario <= teto4){
+    quaFaixa = salario - teto3;
+  }else if(salario > teto4){
+    quaFaixa = teto4;
+  }
+  
+  String quaFxa = quaFaixa.toStringAsFixed(2);
+  double inss4 = quaFaixa * (aliq4 / 100);
+  String quaFx = inss4.toStringAsFixed(2);
+  
+  //====================== Cálculo do INSS
+  double vlrInss = inss1 + inss2 + inss3 +inss4;
+  String totInss = vlrInss.toStringAsFixed(2);
+  //====================== Alíquota efetiva
+  double alqEfet = vlrInss / salario * 100;
+  String efetiva = alqEfet.toStringAsFixed(2);
+  
+  //====================== Demonstrativo das Informações
+  if(salario > 0){
+      print("Salário bruto: R\$$salario");
+  print("==================================================");
+  print("Primeira faixa: R\$$priFaixa - alíquota: $aliq1%");
+  print("INSS Primeira Faixa: R\$$primFx");
+  print("==================================================");
+  }else{
+    print("Por favor, informe o valor do salário");
+  }
+  if(salario > teto1){
+    print("Segunda faixa: R\$$segFxa - alíquota: $aliq2%");
+  print("INSS Segunda Faixa: R\$$segFx");
+  print("==================================================");
+  }
+  if(salario > teto2){
+    print("Terceira faixa: R\$$terFxa - alíquota: $aliq3%");
+  print("INSS Terceira Faixa: R\$$terFx");
+  print("==================================================");
+  }
+  if(salario > teto3){
+    print("Quarta faixa: R\$$quaFxa - alíquota: $aliq4%");
+  print("INSS Quarta Faixa: R\$$quaFx");
+  print("==================================================");
+  }
+  //Total do INSS
+  print("Valor do INSS: R\$$totInss");
+  print("Alíquota efetiva: R\$$efetiva%");
+}
